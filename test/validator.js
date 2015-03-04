@@ -35,9 +35,6 @@ describe('ALF Spec', function () {
     validate(undefined, function (err, valid) {
       valid.should.be.false;
 
-      err[0].should.have.property('field').and.equal('data');
-      err[0].should.have.property('message').and.equal('is the wrong type');
-
       done();
     });
   });
