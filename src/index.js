@@ -4,8 +4,12 @@ var validator = require('is-my-json-valid/require');
 var validate = validator('./schema.json');
 
 module.exports = function (data, cb) {
-  // execute is-my-json-valid
-  var valid = validate(data);
+  var valid = false;
+
+  if (data !== undefined) {
+    // execute is-my-json-valid
+    valid = validate(data);
+  }
 
   // callback?
   if (cb) {

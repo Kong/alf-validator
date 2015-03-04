@@ -31,8 +31,8 @@ describe('ALF Spec', function () {
     });
   });
 
-  it('should fail with Boolean (false)', function (done) {
-    validate(false, function (err, valid) {
+  it('should fail with undefined', function (done) {
+    validate(undefined, function (err, valid) {
       valid.should.be.false;
 
       err[0].should.have.property('field').and.equal('data');
