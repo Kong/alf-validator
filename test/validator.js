@@ -10,54 +10,73 @@ describe('ALF Spec', function () {
     validate({}, function (err, valid) {
       valid.should.be.false;
 
-      err[0].should.have.property('message');
-      err[0].message.should.equal('is required');
-    });
+      err[0].should.have.property('field').and.equal('data.serviceToken');
+      err[0].should.have.property('message').and.equal('is required');
 
-    done();
+      err[1].should.have.property('field').and.equal('data.har');
+      err[1].should.have.property('message').and.equal('is required');
+
+      done();
+    });
   });
 
   it('should fail with empty array', function (done) {
     validate([], function (err, valid) {
       valid.should.be.false;
 
-      err[0].should.have.property('message');
-      err[0].message.should.equal('is the wrong type');
-    });
+      err[0].should.have.property('field').and.equal('data');
+      err[0].should.have.property('message').and.equal('is the wrong type');
 
-    done();
+      done();
+    });
   });
 
-  it('should fail with undefined', function (done) {
-    validate(undefined, function (err, valid) {
+  it('should fail with Boolean (false)', function (done) {
+    validate(false, function (err, valid) {
       valid.should.be.false;
-    });
 
-    done();
+      err[0].should.have.property('field').and.equal('data');
+      err[0].should.have.property('message').and.equal('is the wrong type');
+
+      done();
+    });
   });
 
   it('should fail on bad "alf.serviceToken"', function (done) {
     validate(fixtures.invalid.token, function (err, valid) {
-      err[0].field.should.equal('data.serviceToken');
-      err[0].message.should.equal('is required');
-    });
+      valid.should.be.false;
 
-    done();
+      err[0].should.have.property('field').and.equal('data.serviceToken');
+      err[0].should.have.property('message').and.equal('is required');
+
+      done();
+    });
   });
 
   it('should fail on bad "log.creator"', function (done) {
     validate(fixtures.invalid.creator, function (err, valid) {
-      err[0].should.have.property('message');
-      err[0].message.should.equal('referenced schema does not match');
-    });
+      err[0].should.have.property('field').and.equal('data.har.log.creator');
+      err[0].should.have.property('message').and.equal('referenced schema does not match');
 
-    done();
+      done();
+    });
   });
 
-  it('should not fail with full example', function () {
+  it('should validate successfully with full example', function (done) {
     validate(fixtures.valid, function (err, valid) {
       should.not.exist(err);
       valid.should.be.true;
+
+      done();
+    });
+  });
+
+  it('should validate successfully with minimally required example', function(done) {
+    validate(fixtures.minimal, function (err, valid) {
+      should.not.exist(err);
+      valid.should.be.true;
+
+      done();
     });
   });
 });

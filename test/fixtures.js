@@ -43,6 +43,53 @@ exports.invalid = {
   }
 };
 
+exports.minimal = {
+  serviceToken: '<my service token>',
+  har: {
+    log: {
+      version: '1.2',
+      creator: {
+        name: 'ALF Agent',
+        version: '1.0'
+      },
+      entries: [{
+        startedDateTime: '2015-01-20T18:22:09.052Z',
+        request: {
+          method: 'POST',
+          url: 'http://api.domain.com/path/',
+          httpVersion: 'HTTP/1.1',
+          headers: [{
+            name: 'Accept',
+            value: 'text/plain'
+          }, {
+            name: 'Cookie',
+            value: 'ijafhIAGWF3Awf93f'
+          }],
+          headersSize: 44
+        },
+        response: {
+          status: 200,
+          statusText: 'OK',
+          httpVersion: 'HTTP/1.1',
+          headers: [{
+            name: 'Content-Length',
+            value: '11'
+          }, {
+            name: 'Mime-Type',
+            value: 'text/plain'
+          }],
+          headersSize: 41
+        },
+        timings: {
+          send: 20,
+          wait: 38,
+          receive: 12
+        }
+      }]
+    }
+  }
+};
+
 exports.valid = {
   serviceToken: '<my service token>',
   har: {

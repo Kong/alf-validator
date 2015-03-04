@@ -44,14 +44,13 @@
         "request":          { "$ref": "#/definitions/request" },
         "response":         { "$ref": "#/definitions/response" },
         "timings":          { "$ref": "#/definitions/timings" },
-        "serverIPAddress":  { "type": "string" },
         "comment":          { "type": "string" }
       }
     },
 
     "request": {
       "type": "object",
-      "required": ["method", "url", "httpVersion", "headers", "headersSize", "bodySize"],
+      "required": ["method", "url", "httpVersion", "headers", "headersSize"],
       "properties": {
         "method":       { "type": "string" },
         "url":          { "type": "string", "format": "uri" },
