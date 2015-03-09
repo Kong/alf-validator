@@ -76,4 +76,13 @@ describe('ALF Spec', function () {
       done();
     });
   });
+
+  it('should validate alf spec example', function(done) {
+    validate(fixtures.example, function (err, valid) {
+      should.not.exist(err);
+      valid.should.be.true;
+
+      done();
+    });
+  });
 });

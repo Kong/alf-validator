@@ -13,7 +13,24 @@
           "properties": {
             "version": { "type": "string" },
             "creator": { "$ref": "#/definitions/creator" },
-            "entries": { "type": "array", "items": { "$ref": "#/definitions/entry" } },
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "optional": true,
+
+                "properties": {
+                  "startedDateTime":  { "type": "string", "format": "date-time" },
+                  "serverIPAddress":  { "type": "string", "format": "ipv4" },
+                  "clientIPAddress":  { "type": "string", "format": "ipv4" },
+                  "time":             { "type": "number", "min": 0 },
+                  "request":          { "$ref": "#/definitions/request" },
+                  "response":         { "$ref": "#/definitions/response" },
+                  "timings":          { "$ref": "#/definitions/timings" },
+                  "comment":          { "type": "string" }
+                }
+              }
+            },
             "comment": { "type": "string" }
           }
         }
@@ -29,22 +46,6 @@
         "name":     { "type": "string" },
         "version":  { "type": "string" },
         "comment":  { "type": "string" }
-      }
-    },
-
-    "entry": {
-      "type": "object",
-      "optional": true,
-
-      "properties": {
-        "startedDateTime":  { "type": "string", "format": "date-time" },
-        "serverIPAddress":  { "type": "string", "format": "ipv4" },
-        "clientIPAddress":  { "type": "string", "format": "ipv4" },
-        "time":             { "type": "number", "min": 0 },
-        "request":          { "$ref": "#/definitions/request" },
-        "response":         { "$ref": "#/definitions/response" },
-        "timings":          { "$ref": "#/definitions/timings" },
-        "comment":          { "type": "string" }
       }
     },
 
