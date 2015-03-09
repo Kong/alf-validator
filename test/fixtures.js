@@ -175,7 +175,7 @@ exports.example = {
       },
       entries: [
         {
-          startedDateTime: "2015-01-20T18:22:09.052",
+          startedDateTime: "2015-01-20T18:22:09.052Z",
           serverIPAddress: "10.10.10.10",
           clientIPAddress: "10.10.10.20",
           time: 50,
