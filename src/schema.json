@@ -96,7 +96,7 @@
         "size":         { "type": "number" },
         "compression":  { "type": "number" },
         "mimeType":     { "type": "string" },
-        "text":         { "type": "string" },
+        "text":         { "type": ["string", "null"] },
         "encoding":     { "type": "string" },
         "comment":      { "type": "string" }
       }
