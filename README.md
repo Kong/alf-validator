@@ -28,7 +28,6 @@ npm install --save alf-validator
 
     -h, --help           output usage information
     -V, --version        output the version number
-    -s, --schema [name]  validate schema name (log, request, response, etc ...)
 
 ```
 
@@ -36,8 +35,6 @@ npm install --save alf-validator
 
 ```shell
 alf-validator alf.json
-
-alf-validator --schema request request.json
 ```
 
 ## API
