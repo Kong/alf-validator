@@ -46,7 +46,7 @@
     "bluebird": "^2.9.21",
     "chalk": "^1.0.0",
     "commander": "^2.7.1",
-    "har-validator": "^1.6.0",
+    "har-validator": "^1.6.1",
     "is-my-json-valid": "^2.10.0"
   }
 }
