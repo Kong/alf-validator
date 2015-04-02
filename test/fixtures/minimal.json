@@ -1,0 +1,62 @@
+{
+  "serviceToken": "<my service token>",
+  "har": {
+    "log": {
+      "version": "1.2",
+      "creator": {
+        "name": "ALF Agent",
+        "version": "1.0"
+      },
+      "entries": [
+        {
+          "startedDateTime": "2015-01-20T18:22:09.052Z",
+          "time": 100,
+          "request": {
+            "method": "POST",
+            "url": "http://api.domain.com/path/",
+            "httpVersion": "HTTP/1.1",
+            "queryString": [],
+            "headers": [
+              {
+                "name": "Accept",
+                "value": "text/plain"
+              },
+              {
+                "name": "Cookie",
+                "value": "ijafhIAGWF3Awf93f"
+              }
+            ],
+            "headersSize": 44,
+            "bodySize": 0
+          },
+          "response": {
+            "status": 200,
+            "statusText": "OK",
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": "11"
+              },
+              {
+                "name": "Mime-Type",
+                "value": "text/plain"
+              }
+            ],
+            "content": {
+              "mimeType": "text/html",
+              "size": 0
+            },
+            "headersSize": 41,
+            "bodySize": 0
+          },
+          "timings": {
+            "send": 20,
+            "wait": 38,
+            "receive": 12
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,37 +1,52 @@
 {
-  "version": "1.1.0",
+  "version": "2.0.0",
   "name": "alf-validator",
   "description": "Extremely fast API Log Format (ALF) validator using JSON Schema",
-  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
+  "author": "Ahmad Nassri <ahmad@mashape.com> (https://www.mashape.com/)",
+  "homepage": "https://github.com/Mashape/alf-validator",
   "license": "MIT",
   "main": "./src/index.js",
   "bin": "./bin/alf-validator",
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.4.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ahmadnassri/alf-validator.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ahmadnassri/alf-validator/issues"
-  },
   "keywords": [
     "alf",
-    "HTTP",
-    "Archive"
+    "har",
+    "http",
+    "archive",
+    "validate",
+    "validator"
   ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mashape/alf-validator"
+  },
+  "bugs": {
+    "url": "https://github.com/Mashape/alf-validator/issues"
+  },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "standard && mocha --reporter spec",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "devDependencies": {
-    "mocha": "^2.1.0",
-    "should": "^5.0.1"
+    "codeclimate-test-reporter": "0.0.4",
+    "istanbul": "^0.3.11",
+    "mocha": "^2.2.1",
+    "require-directory": "^2.1.0",
+    "should": "^5.2.0",
+    "standard": "^3.3.0"
   },
   "dependencies": {
+    "bluebird": "^2.9.21",
     "chalk": "^1.0.0",
-    "commander": "^2.6.0",
-    "is-my-json-valid": "^2.9.4"
+    "commander": "^2.7.1",
+    "har-validator": "^1.6.0",
+    "is-my-json-valid": "^2.10.0"
   }
 }
