@@ -1,49 +1,40 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-var chalk = require('chalk');
-var cmd = require('commander');
-var fs = require('fs');
-var pkg = require('../package.json');
-var validate = require('..');
+var Promise = require('bluebird')
+
+var chalk = require('chalk')
+var cmd = require('commander')
+var fs = Promise.promisifyAll(require('fs'))
+var path = require('path')
+var pkg = require('../package.json')
+var validate = Promise.promisify(require('..'))
 
 cmd
   .version(pkg.version)
-  .usage('<file ...>')
-  .parse(process.argv);
+  .usage('[options] <files ...>')
+  .parse(process.argv)
 
 if (!cmd.args.length) {
-  cmd.help();
+  cmd.help()
 }
 
-function readJson (fileName) {
-  var data = '{}';
+cmd.args.map(function (fileName) {
+  var file = chalk.yellow.italic(path.basename(fileName))
 
-  try {
-    data = fs.readFileSync(fileName, {
-      encoding: 'utf8'
-    });
-  } catch (e) {
-    throw new Error('Couldn\'t read the file: ' + fileName);
-  }
-
-  try {
-    return JSON.parse(data);
-  } catch (e) {
-    throw new Error('Couldn\'t parse the file as JSON: ' + fileName);
-  }
-}
-
-var file = cmd.args.shift();
-var alf = readJson(file);
-
-validate(alf, function (err, result) {
-  if (err) {
-    console.error('%s %s failed validation: %s (%s)', chalk.red('✖'), chalk.italic(file), err[0].message, chalk.yellow.italic(err[0].field));
-    process.exit(1);
-  }
-
-  console.log('%s %s is a valid ALF %s', chalk.green('✓'), chalk.italic(file), chalk.yellow('v1.2'));
-  process.exit(0);
-});
+  fs.readFileAsync(fileName)
+    .then(JSON.parse)
+    .then(validate)
+    .then(function () {
+      console.log('%s [%s] is valid', chalk.green('✓'), file)
+    })
+    .catch(SyntaxError, function (e) {
+      console.error('%s [%s] failed to read JSON: %s', chalk.red('✖'), file, chalk.red(e.message))
+    })
+    .catch(function (e) {
+      e.errors.map(function (err) {
+        console.error('%s [%s] failed validation: (%s: %s) %s', chalk.red('✖'), file, chalk.cyan.italic(err.field), chalk.magenta.italic(err.value), chalk.red(err.message))
+      })
+    })
+})
