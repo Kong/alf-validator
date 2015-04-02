@@ -32,7 +32,6 @@ schemas.har.properties.log.properties.entries.items.properties.response.required
   'bodySize'
 ]
 
-schemas.har.properties.log.properties.entries.items.properties.serverIPAddress = { 'type': 'string', 'format': 'ipv4' }
 schemas.har.properties.log.properties.entries.items.properties.clientIPAddress = { 'type': 'string', 'format': 'ipv4' }
 
 var schema = {
