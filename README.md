@@ -39,12 +39,15 @@ alf-validator alf.json
 
 ## API
 
-### Validate(data [, callback])
+### Validate(data [, options, callback])
 
 Returns `true` or `false`.
 
 - **data**: `Object` *(Required)*
   a full [ALF](https://github.com/Mashape/api-log-format) object
+
+- **options**: `Object`
+  Options Object
 
 - **callback**: `Function`
   gets two arguments (err, valid)
@@ -59,6 +62,12 @@ validate(ALF, function (e, valid) {
   if (valid) console.log('horray!');
 });
 ```
+
+#### Options
+
+| Name      | Description                     | Default    |
+| --------- | ------------------------------- | ---------- |
+| `version` | Schema version validate against | `'latest'` |
 
 ## License
 
