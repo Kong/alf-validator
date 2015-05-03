@@ -39,4 +39,7 @@ function validate (type) {
 module.exports = validate('single')
 module.exports.single = validate('single')
 module.exports.multi = validate('multi')
-module.exports.schema = schema
+
+module.exports.schema = function (version) {
+  return schema[version]
+}

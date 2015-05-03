@@ -41,6 +41,10 @@ alf-validator alf.json
 
 ### Validate(data [, options, callback])
 
+alias of `validate.single()`
+
+### Validate.single(data [, options, callback])
+
 Returns `true` or `false`.
 
 - **data**: `Object` *(Required)*
@@ -53,8 +57,8 @@ Returns `true` or `false`.
   gets two arguments (err, valid)
 
 ```js
-var ALF = require('./alf.json');
-var validate = require('alf-validator');
+var ALF = require('./alf.json')
+var validate = require('alf-validator')
 var options = {
   version: '1.0.0'
 }
@@ -62,8 +66,48 @@ var options = {
 validate(ALF, options, function (e, valid) {
   if (e) console.log(e.errors)
 
-  if (valid) console.log('horray!');
-});
+  if (valid) console.log('horray!')
+})
+```
+
+### Validate.multi(data [, options, callback])
+
+Returns `true` or `false`.
+
+- **data**: `Array` *(Required)*
+  an array of [ALF](https://github.com/Mashape/api-log-format) objects
+
+- **options**: `Object`
+  Options Object
+
+- **callback**: `Function`
+  gets two arguments (err, valid)
+
+```js
+var ALFArray = require('./alf.json')
+var validate = require('alf-validator')
+var options = {
+  version: '1.0.0'
+}
+
+validate(ALFArray, options, function (e, valid) {
+  if (e) console.log(e.errors)
+
+  if (valid) console.log('horray!')
+})
+```
+
+### Validate.schema(version)
+
+Returns the JSON Schema object
+
+- **version**: `String` *(Required)*
+ [ALF Schema](https://github.com/Mashape/api-log-format) version
+
+```js
+var validate = require('alf-validator')
+
+validate.schema('1.0.0')
 ```
 
 #### Options
