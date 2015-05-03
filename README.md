@@ -70,6 +70,13 @@ validate(ALF, options, function (e, valid) {
 })
 ```
 
+#### Options
+
+| Name      | Description                     | Default    |
+| --------- | ------------------------------- | ---------- |
+| `version` | Schema version validate against | `'latest'` |
+
+
 ### Validate.multi(data [, options, callback])
 
 Returns `true` or `false`.
@@ -97,6 +104,13 @@ validate(ALFArray, options, function (e, valid) {
 })
 ```
 
+#### Options
+
+| Name      | Description                     | Default    |
+| --------- | ------------------------------- | ---------- |
+| `version` | Schema version validate against | `'latest'` |
+
+
 ### Validate.schema(version)
 
 Returns the JSON Schema object
@@ -109,12 +123,6 @@ var validate = require('alf-validator')
 
 validate.schema('1.0.0')
 ```
-
-#### Options
-
-| Name      | Description                     | Default    |
-| --------- | ------------------------------- | ---------- |
-| `version` | Schema version validate against | `'latest'` |
 
 ## License
 
