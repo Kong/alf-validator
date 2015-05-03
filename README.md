@@ -72,9 +72,9 @@ validate(ALF, options, function (e, valid) {
 
 #### Options
 
-| Name      | Description                     | Default    |
-| --------- | ------------------------------- | ---------- |
-| `version` | Schema version validate against | `'latest'` |
+| Name      | Description                        | Default    |
+| --------- | ---------------------------------- | ---------- |
+| `version` | Schema version to validate against | `'latest'` |
 
 
 ### Validate.multi(data [, options, callback])
@@ -106,9 +106,9 @@ validate(ALFArray, options, function (e, valid) {
 
 #### Options
 
-| Name      | Description                     | Default    |
-| --------- | ------------------------------- | ---------- |
-| `version` | Schema version validate against | `'latest'` |
+| Name      | Description                        | Default    |
+| --------- | ---------------------------------- | ---------- |
+| `version` | Schema version to validate against | `'latest'` |
 
 
 ### Validate.schema(version)
