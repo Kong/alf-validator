@@ -13,7 +13,7 @@ var schema = {
     serviceToken: 'string',
     version: {
       type: 'string',
-      pattern: '^1\.0\.0$'
+      pattern: '^1\\.0\\.0$'
     },
     clientIPAddress: {
       type: 'string',

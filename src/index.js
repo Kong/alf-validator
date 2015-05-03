@@ -26,13 +26,11 @@ function validate (type) {
     }
 
     // callback?
-    if (!cb) {
-      return validate.errors ? false : true
-    } else {
+    if (typeof cb === 'function') {
       return cb(validate.errors ? new ValidationError(validate.errors) : null, valid)
     }
 
-    return valid
+    return validate.errors ? false : true
   }
 }
 
