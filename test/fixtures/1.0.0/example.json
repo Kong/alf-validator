@@ -68,8 +68,10 @@
               "text": "hello world"
             },
             "bodySize": 11,
-            "headersSize": 41
+            "headersSize": 41,
+            "redirectURL": ""
           },
+          "cache": {},
           "timings": {
             "blocked": 0,
             "dns": 0,

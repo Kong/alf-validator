@@ -1,6 +1,7 @@
 'use strict'
 
-var schemas = require('har-validator/src/schemas')
+var clone = require('stringify-clone')
+var schemas = clone(require('har-validator/src/schemas'))
 
 // ALF modification to HAR
 

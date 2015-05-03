@@ -14,6 +14,7 @@ var validate = Promise.promisify(require('..'))
 cmd
   .version(pkg.version)
   .usage('[options] <files ...>')
+  .option('-s, --schema [version]', 'validate using specific schema version (default to latest)', 'latest')
   .parse(process.argv)
 
 if (!cmd.args.length) {
@@ -25,7 +26,11 @@ cmd.args.map(function (fileName) {
 
   fs.readFileAsync(fileName)
     .then(JSON.parse)
-    .then(validate)
+    .then(function (data) {
+      return validate(data, {
+        version: cmd.schema || 'latest'
+      })
+    })
     .then(function () {
       console.log('%s [%s] is valid', chalk.green('✓'), file)
     })

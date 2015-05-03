@@ -51,8 +51,10 @@
               "size": 0
             },
             "headersSize": 41,
-            "bodySize": 0
+            "bodySize": 0,
+            "redirectURL": ""
           },
+          "cache": {},
           "timings": {
             "send": 20,
             "wait": 38,

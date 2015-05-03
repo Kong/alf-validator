@@ -22,8 +22,9 @@ npm install --save alf-validator
 
   Options:
 
-    -h, --help     output usage information
-    -V, --version  output the version number
+    -h, --help              output usage information
+    -V, --version           output the version number
+    -s, --schema [version]  validate using specific schema version (default to latest)
 
 ```
 
