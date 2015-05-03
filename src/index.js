@@ -1,11 +1,18 @@
 'use strict'
 
+var latest = '1.0.0'
 var schema = require('./schema')
 var validator = require('is-my-json-valid')
 var ValidationError = require('har-validator/src/error')
 
-module.exports = function (data, cb) {
-  var validate = validator(schema, {
+// create alias
+schema.latest = schema[latest]
+
+// main module
+module.exports = function (data, options, cb) {
+  var opts = options || {}
+
+  var validate = validator(schema[opts.version || latest], {
     greedy: true,
     verbose: true
   })
@@ -26,3 +33,5 @@ module.exports = function (data, cb) {
 
   return valid
 }
+
+module.exports.schema = schema

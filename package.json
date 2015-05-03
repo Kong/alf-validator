@@ -4,6 +4,7 @@
   "description": "Extremely fast API Log Format (ALF) validator using JSON Schema",
   "author": "Ahmad Nassri <ahmad@mashape.com> (https://www.mashape.com/)",
   "homepage": "https://github.com/Mashape/alf-validator",
+  "repository": "Mashape/alf-validator",
   "license": "MIT",
   "main": "./src/index.js",
   "bin": "./bin/alf-validator",
@@ -22,16 +23,12 @@
     "bin",
     "src"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Mashape/alf-validator"
-  },
   "bugs": {
     "url": "https://github.com/Mashape/alf-validator/issues"
   },
   "scripts": {
     "test": "standard && mocha --reporter spec",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "coverage": "istanbul cover --dir coverage ./node_modules/mocha/bin/_mocha",
     "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "devDependencies": {

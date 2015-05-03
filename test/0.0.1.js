@@ -7,9 +7,13 @@ var should = require('should')
 var fixtures = require('./fixtures')
 var validate = require('..')
 
-describe('ALF Spec', function () {
+describe('ALF v0.0.1', function () {
   it('should fail with empty object', function (done) {
-    validate({}, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate({}, options, function (e, valid) {
       valid.should.be.false
 
       e.errors[0].should.have.property('field').and.equal('data.serviceToken')
@@ -23,7 +27,11 @@ describe('ALF Spec', function () {
   })
 
   it('should fail with empty array', function (done) {
-    validate([], function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate([], options, function (e, valid) {
       valid.should.be.false
 
       e.errors[0].should.have.property('field').and.equal('data')
@@ -34,7 +42,11 @@ describe('ALF Spec', function () {
   })
 
   it('should fail with undefined', function (done) {
-    validate(undefined, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(undefined, options, function (e, valid) {
       valid.should.be.false
 
       should.not.exist(e)
@@ -44,7 +56,11 @@ describe('ALF Spec', function () {
   })
 
   it('should fail on bad "alf.serviceToken"', function (done) {
-    validate(fixtures.invalid.token, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].invalid.token, options, function (e, valid) {
       valid.should.be.false
 
       e.errors[0].should.have.property('field').and.equal('data.serviceToken')
@@ -55,7 +71,11 @@ describe('ALF Spec', function () {
   })
 
   it('should fail on bad "log.creator"', function (done) {
-    validate(fixtures.invalid.creator, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].invalid.creator, options, function (e, valid) {
       valid.should.be.false
 
       e.errors[0].should.have.property('field').and.equal('data.har.log.creator.version')
@@ -66,7 +86,11 @@ describe('ALF Spec', function () {
   })
 
   it('should fail on bad "log.version"', function (done) {
-    validate(fixtures.invalid.version, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].invalid.version, options, function (e, valid) {
       valid.should.be.false
 
       e.errors[0].should.have.property('field').and.equal('data.har.log.version')
@@ -76,8 +100,27 @@ describe('ALF Spec', function () {
     })
   })
 
+  it('should fail on bad "log.entries.*.request.content.mimeType"', function (done) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].invalid.content, options, function (e, valid) {
+      valid.should.be.false
+
+      e.errors[0].should.have.property('field').and.equal('data.har.log.entries.*.request.content.mimeType')
+      e.errors[0].should.have.property('message').and.equal('is required')
+
+      done()
+    })
+  })
+
   it('should validate successfully with full example', function (done) {
-    validate(fixtures.valid, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].valid, options, function (e, valid) {
       should.not.exist(e)
       valid.should.be.true
 
@@ -86,7 +129,11 @@ describe('ALF Spec', function () {
   })
 
   it('should validate successfully with minimally required example', function (done) {
-    validate(fixtures.minimal, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].minimal, options, function (e, valid) {
       should.not.exist(e)
       valid.should.be.true
 
@@ -95,7 +142,11 @@ describe('ALF Spec', function () {
   })
 
   it('should validate alf spec example', function (done) {
-    validate(fixtures.example, function (e, valid) {
+    var options = {
+      version: '0.0.1'
+    }
+
+    validate(fixtures['0.0.1'].example, options, function (e, valid) {
       should.not.exist(e)
       valid.should.be.true
 

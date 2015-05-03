@@ -10,11 +10,7 @@ Extremely fast API Log Format ([ALF](https://github.com/Mashape/api-log-format))
 
 ## Install
 
-```shell
-# to use in cli
-npm install --global alf-validator
-
-# to use as a module
+```sh
 npm install --save alf-validator
 ```
 
@@ -26,12 +22,15 @@ npm install --save alf-validator
 
   Options:
 
-    -h, --help           output usage information
-    -V, --version        output the version number
+    -h, --help     output usage information
+    -V, --version  output the version number
 
 ```
 
+
 ###### Example
+
+## CLI 
 
 ```shell
 alf-validator alf.json
