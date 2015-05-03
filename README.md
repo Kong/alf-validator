@@ -55,8 +55,11 @@ Returns `true` or `false`.
 ```js
 var ALF = require('./alf.json');
 var validate = require('alf-validator');
+var options = {
+  version: '1.0.0'
+}
 
-validate(ALF, function (e, valid) {
+validate(ALF, options, function (e, valid) {
   if (e) console.log(e.errors)
 
   if (valid) console.log('horray!');
