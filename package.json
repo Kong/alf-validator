@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "name": "alf-validator",
   "description": "Extremely fast API Log Format (ALF) validator using JSON Schema",
   "author": "Ahmad Nassri <ahmad@mashape.com> (https://www.mashape.com/)",
