@@ -93,7 +93,7 @@ describe('ALF v1.0.0', function () {
       version: '1.0.0'
     }
 
-    validate(fixtures['1.0.0'].valid, options, function (e, valid) {
+    validate(fixtures['1.0.0'].full, options, function (e, valid) {
       should.not.exist(e)
       valid.should.be.true
 
@@ -101,7 +101,7 @@ describe('ALF v1.0.0', function () {
     })
   })
 
-  it('should validate successfully with minimally required example', function (done) {
+  it('should succeed with minimally required example', function (done) {
     var options = {
       version: '1.0.0'
     }
@@ -114,14 +114,29 @@ describe('ALF v1.0.0', function () {
     })
   })
 
-  it('should validate alf spec example', function (done) {
+  it('should succeed on multi ALF', function (done) {
     var options = {
       version: '1.0.0'
     }
 
-    validate(fixtures['1.0.0'].example, options, function (e, valid) {
+    validate.multi(fixtures['1.0.0'].multi, options, function (e, valid) {
       should.not.exist(e)
       valid.should.be.true
+
+      done()
+    })
+  })
+
+  it('should fail on multi with one corrupt', function (done) {
+    var options = {
+      version: '1.0.0'
+    }
+
+    validate.multi(fixtures['1.0.0'].invalid.multi, options, function (e, valid) {
+      e.errors[0].should.have.property('field').and.equal('data.*.version')
+      e.errors[0].should.have.property('message').and.equal('is required')
+
+      valid.should.be.false
 
       done()
     })

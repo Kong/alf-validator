@@ -22,4 +22,13 @@ var schema = {
   }
 }
 
-module.exports = schema
+var multi = {
+  type: 'array',
+  minItems: 1,
+  items: schema
+}
+
+module.exports = {
+  single: schema,
+  multi: multi
+}

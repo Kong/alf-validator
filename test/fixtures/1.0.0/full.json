@@ -1,0 +1,128 @@
+{
+  "version": "1.0.0",
+  "serviceToken": "<my service token>",
+  "clientIPAddress": "10.10.10.20",
+  "environment": "PRODUCTION",
+  "har": {
+    "log": {
+      "version": "1.2",
+      "creator": {
+        "name": "HAR Logger",
+        "version": "1.0.0"
+      },
+      "entries": [
+        {
+          "startedDateTime": "2015-02-10T07:33:17.146Z",
+          "serverIPAddress": "10.10.10.10",
+          "time": 181.59985542297363,
+          "request": {
+            "method": "POST",
+            "url": "http://api.mockbin.com/",
+            "httpVersion": "HTTP/1.1",
+            "queryString": [
+              {
+                "name": "foo",
+                "value": "bar"
+              },
+              {
+                "name": "baz",
+                "value": "abc"
+              }
+            ],
+            "headers": [
+              {
+                "name": "Origin",
+                "value": "http://mockbin.com"
+              },
+              {
+                "name": "Accept-Encoding",
+                "value": "gzip, deflate"
+              },
+              {
+                "name": "Host",
+                "value": "mockbin.com"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Content-Length",
+                "value": "234"
+              }
+            ],
+            "cookies": [
+              {
+                "name": "foo",
+                "expires": "2015-02-10T07:33:17.146Z",
+                "value": "bar",
+                "httpOnly": false,
+                "secure": false
+              }
+            ],
+            "headersSize": 44,
+            "bodySize": 14,
+            "postData": {
+              "mimeType": "application/x-www-form-urlencoded",
+              "text": "foo=bar&bar=baz",
+              "params": [
+                {
+                  "name": "foo",
+                  "value": "bar"
+                },
+                {
+                  "name": "bar",
+                  "value": "baz"
+                }
+              ]
+            }
+          },
+          "response": {
+            "status": 201,
+            "statusText": "Created",
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {
+                "name": "Date",
+                "value": "Sun, 03 May 2015 18:47:46 GMT"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "cookies": [],
+            "content": {
+              "size": 23,
+              "mimeType": "application/json",
+              "text": "{\"foo\": \"bar\"}",
+              "compression": -17
+            },
+            "redirectURL": "",
+            "headersSize": 215,
+            "bodySize": 286
+          },
+          "cache": {},
+          "timings": {
+            "blocked": 0.381000001652865,
+            "dns": -1,
+            "connect": -1,
+            "send": 0.05899999996472599,
+            "wait": 179.1829999983744,
+            "receive": 1.9768554229816289,
+            "ssl": -1
+          },
+          "connection": "3178207"
+        }
+      ]
+    }
+  }
+}
