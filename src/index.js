@@ -30,7 +30,7 @@ function validate (type) {
       return cb(validate.errors ? new ValidationError(validate.errors) : null, valid)
     }
 
-    return !validate.errors > 0
+    return valid
   }
 }
 
