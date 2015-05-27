@@ -131,7 +131,7 @@ describe('ALF v0.0.1', function () {
       validate(fixtures['0.0.1'].invalid.content, options, function (e, valid) {
         valid.should.be.false
 
-        e.errors[0].should.have.property('field').and.equal('data.har.log.entries.*.request.content.mimeType')
+        e.errors[0].should.have.property('field').and.equal('data.har.log.entries.0.request.content.mimeType')
         e.errors[0].should.have.property('message').and.equal('is required')
 
         done()

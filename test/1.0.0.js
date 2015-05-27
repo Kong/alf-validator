@@ -156,7 +156,7 @@ describe('ALF v1.0.0', function () {
       }
 
       validate.multi(fixtures['1.0.0'].invalid.multi, options, function (e, valid) {
-        e.errors[0].should.have.property('field').and.equal('data.*.version')
+        e.errors[0].should.have.property('field').and.equal('data.1.version')
         e.errors[0].should.have.property('message').and.equal('is required')
 
         valid.should.be.false

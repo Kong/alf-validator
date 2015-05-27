@@ -116,7 +116,7 @@ validate(ALFArray, options, function (e, valid) {
 Returns the JSON Schema object
 
 - **version**: `String` *(Required)*
- [ALF Schema](https://github.com/Mashape/api-log-format) version
+  [ALF Schema](https://github.com/Mashape/api-log-format) version
 
 ```js
 var validate = require('alf-validator')
