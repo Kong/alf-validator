@@ -6,8 +6,8 @@
   "homepage": "https://github.com/Mashape/alf-validator",
   "repository": "Mashape/alf-validator",
   "license": "MIT",
-  "main": "./src/index.js",
-  "bin": "./bin/alf-validator",
+  "main": "src/index.js",
+  "bin": "bin/alf-validator",
   "keywords": [
     "alf",
     "har",
@@ -27,8 +27,10 @@
     "url": "https://github.com/Mashape/alf-validator/issues"
   },
   "scripts": {
-    "test": "standard && echint && mocha --reporter spec",
-    "coverage": "istanbul cover --dir coverage ./node_modules/mocha/bin/_mocha",
+    "pretest": "standard && echint",
+    "test": "mocha",
+    "posttest": "npm run coverage",
+    "coverage": "istanbul cover --dir coverage _mocha -- -R dot",
     "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "echint": {
@@ -38,7 +40,7 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
-    "echint": "^1.1.0",
+    "echint": "^1.1.1",
     "istanbul": "^0.3.14",
     "mocha": "^2.2.5",
     "require-directory": "^2.1.0",
