@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "serviceToken": "<my service token>",
-  "clientIPAddress": "10.10.10.20",
+  "clientIPAddress": "::1",
   "environment": "PRODUCTION",
   "har": {
     "log": {

@@ -2,7 +2,7 @@
 
 'use strict'
 
-var schema = require('../src/schema')
+var schema = require('../lib/schema')
 var validate = require('..')
 
 require('should')
