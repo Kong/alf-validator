@@ -28,7 +28,6 @@ npm install --save alf-validator
 
 ```
 
-
 ###### Example
 
 ## CLI 
@@ -39,22 +38,19 @@ alf-validator alf.json
 
 ## API
 
-### Validate(data [, options, callback])
+### Validate(data [, options])
 
 alias of `validate.single()`
 
-### Validate.single(data [, options, callback])
+### Validate.single(data [, options])
 
-Returns `true` or `false`.
+> Returns a promise that resolves to the valid object.
 
 - **data**: `Object` *(Required)*
   a full [ALF](https://github.com/Mashape/api-log-format) object
 
 - **options**: `Object`
   Options Object
-
-- **callback**: `Function`
-  gets two arguments (err, valid)
 
 ```js
 var ALF = require('./alf.json')
@@ -63,10 +59,13 @@ var options = {
   version: '1.0.0'
 }
 
-validate(ALF, options, function (e, valid) {
-  if (e) console.log(e.errors)
-
-  if (valid) console.log('horray!')
+validate(ALF, options)
+  .then(function (ALF) {
+    console.log('horray!')
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
 })
 ```
 
@@ -79,16 +78,13 @@ validate(ALF, options, function (e, valid) {
 
 ### Validate.multi(data [, options, callback])
 
-Returns `true` or `false`.
+> Returns a promise that resolves to the valid object.
 
 - **data**: `Array` *(Required)*
   an array of [ALF](https://github.com/Mashape/api-log-format) objects
 
 - **options**: `Object`
   Options Object
-
-- **callback**: `Function`
-  gets two arguments (err, valid)
 
 ```js
 var ALFArray = require('./alf.json')
@@ -97,10 +93,13 @@ var options = {
   version: '1.0.0'
 }
 
-validate(ALFArray, options, function (e, valid) {
-  if (e) console.log(e.errors)
-
-  if (valid) console.log('horray!')
+validate(ALFArray, options)
+  .then(function (ALF) {
+    console.log('horray!')
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
 })
 ```
 
@@ -123,6 +122,43 @@ var validate = require('alf-validator')
 
 validate.schema('1.0.0')
 ```
+
+----
+
+## Callback API
+
+> Returns `true` or `false`.
+
+- **data**: `Object` *(Required)*
+  a full [ALF](https://github.com/Mashape/api-log-format) object
+
+- **options**: `Object`
+  Options Object
+
+- **callback**: `Function`
+  gets two arguments (err, valid)
+
+```js
+var ALF = require('./alf.json')
+var validate = require('alf-validator/lib/async')
+var options = {
+  version: '1.0.0'
+}
+
+validate(ALF, options, function (e, valid) {
+  if (e) console.log(e.errors)
+
+  if (valid) console.log('horray!')
+})
+```
+
+#### Options
+
+| Name      | Description                        | Default    |
+| --------- | ---------------------------------- | ---------- |
+| `version` | Schema version to validate against | `'latest'` |
+
+----
 
 ## License
 

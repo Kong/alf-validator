@@ -2,167 +2,137 @@
 
 'use strict'
 
-var should = require('should')
-
 var fixtures = require('./fixtures')
 var validate = require('..')
+var ValidationError = require('har-validator/lib/error')
+
+require('should-promised')
 
 describe('ALF v1.0.0', function () {
-  describe('no callback', function () {
-    it('should fail', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should return a Promise', function () {
+    validate().should.be.a.Promise()
+  })
 
-      validate({}, options).should.be.false
+  it('should succeed', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      done()
-    })
+    validate(fixtures['1.0.0'].full, options).should.be.fulfilledWith(fixtures['1.0.0'].full)
+  })
 
-    it('should succeed', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should fail with empty object', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate(fixtures['1.0.0'].full, options).should.be.true
-
-      done()
+    validate({}, options).should.be.rejectedWith(ValidationError, {
+      errors: [
+        {
+          field: 'data.version',
+          message: 'is required'
+        },
+        {
+          field: 'data.serviceToken',
+          message: 'is required'
+        },
+        {
+          field: 'data.har',
+          message: 'is required'
+        }
+      ]
     })
   })
 
-  describe('callback', function () {
-    it('should fail with empty object', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should fail with empty array', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate({}, options, function (e, valid) {
-        valid.should.be.false
-
-        e.errors[0].should.have.property('field').and.equal('data.version')
-        e.errors[0].should.have.property('message').and.equal('is required')
-
-        e.errors[1].should.have.property('field').and.equal('data.serviceToken')
-        e.errors[1].should.have.property('message').and.equal('is required')
-
-        e.errors[2].should.have.property('field').and.equal('data.har')
-        e.errors[2].should.have.property('message').and.equal('is required')
-
-        done()
-      })
+    validate([], options).should.be.rejectedWith(ValidationError, {
+      errors: [
+        {
+          field: 'data',
+          message: 'is the wrong type'
+        }
+      ]
     })
+  })
 
-    it('should fail with empty array', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should fail with undefined', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate([], options, function (e, valid) {
-        valid.should.be.false
+    validate(undefined, options).should.be.rejectedWith(ValidationError, {})
+  })
 
-        e.errors[0].should.have.property('field').and.equal('data')
-        e.errors[0].should.have.property('message').and.equal('is the wrong type')
+  it('should fail on bad "log.creator"', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-        done()
-      })
+    validate(fixtures['1.0.0'].invalid.creator, options).should.be.rejectedWith(ValidationError, {
+      errors: [
+        {
+          field: 'data.har.log.creator.version',
+          message: 'is required'
+        }
+      ]
     })
+  })
 
-    it('should fail with undefined', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should fail on bad "log.version"', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate(undefined, options, function (e, valid) {
-        valid.should.be.false
-
-        should.not.exist(e)
-
-        done()
-      })
+    validate(fixtures['1.0.0'].invalid.version, options).should.be.rejectedWith(ValidationError, {
+      errors: [
+        {
+          field: 'data.har.log.version',
+          message: 'is the wrong type'
+        }
+      ]
     })
+  })
 
-    it('should fail on bad "log.creator"', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should validate successfully with full example', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate(fixtures['1.0.0'].invalid.creator, options, function (e, valid) {
-        valid.should.be.false
+    validate(fixtures['1.0.0'].full, options).should.be.fulfilled()
+  })
 
-        e.errors[0].should.have.property('field').and.equal('data.har.log.creator.version')
-        e.errors[0].should.have.property('message').and.equal('is required')
+  it('should succeed with minimally required example', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-        done()
-      })
-    })
+    validate(fixtures['1.0.0'].minimal, options).should.be.fulfilled()
+  })
 
-    it('should fail on bad "log.version"', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+  it('should succeed on multi ALF', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-      validate(fixtures['1.0.0'].invalid.version, options, function (e, valid) {
-        valid.should.be.false
+    validate.multi(fixtures['1.0.0'].multi, options).should.be.fulfilled()
+  })
 
-        e.errors[0].should.have.property('field').and.equal('data.har.log.version')
-        e.errors[0].should.have.property('message').and.equal('is the wrong type')
+  it('should fail on multi with one corrupt', function () {
+    var options = {
+      version: '1.0.0'
+    }
 
-        done()
-      })
-    })
-
-    it('should validate successfully with full example', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate(fixtures['1.0.0'].full, options, function (e, valid) {
-        should.not.exist(e)
-        valid.should.be.true
-
-        done()
-      })
-    })
-
-    it('should succeed with minimally required example', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate(fixtures['1.0.0'].minimal, options, function (e, valid) {
-        should.not.exist(e)
-        valid.should.be.true
-
-        done()
-      })
-    })
-
-    it('should succeed on multi ALF', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate.multi(fixtures['1.0.0'].multi, options, function (e, valid) {
-        should.not.exist(e)
-        valid.should.be.true
-
-        done()
-      })
-    })
-
-    it('should fail on multi with one corrupt', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate.multi(fixtures['1.0.0'].invalid.multi, options, function (e, valid) {
-        e.errors[0].should.have.property('field').and.equal('data.1.version')
-        e.errors[0].should.have.property('message').and.equal('is required')
-
-        valid.should.be.false
-
-        done()
-      })
+    validate.multi(fixtures['1.0.0'].invalid.multi, options).should.be.rejectedWith(ValidationError, {
+      errors: [
+        {
+          field: 'data.1.version',
+          message: 'is required'
+        }
+      ]
     })
   })
 })
