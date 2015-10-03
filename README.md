@@ -76,7 +76,7 @@ validate(ALF, options)
 | `version` | Schema version to validate against | `'latest'` |
 
 
-### Validate.multi(data [, options, callback])
+### Validate.multi(data [, options])
 
 > Returns a promise that resolves to the valid object.
 
