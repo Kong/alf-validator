@@ -1,3 +1,7 @@
-'use strict'
+import mutliple from './multi.json'
 
-module.exports = require('require-directory')(module)
+export * as invalid from './invalid/'
+export * as full from './full.json'
+export * as minimal from './minimal.json'
+
+export const multi = mutliple

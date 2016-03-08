@@ -1,59 +1,35 @@
-/* global describe, it */
+import ALFError from '../src/error'
+import tap from 'tap'
+import validate from '../src/async'
+import fixtures from './fixtures/'
 
-'use strict'
+tap.test('async', (t) => {
+  t.test('failure', (assert) => {
+    assert.plan(4)
 
-var fixtures = require('./fixtures')
-var should = require('should')
-var validate = require('../lib/async')
+    let error = new ALFError([{ field: 'data.version', message: 'is required' }])
 
-describe('Async', function () {
-  describe('no callback', function () {
-    it('should fail', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+    assert.notOk(validate({}), 'should fail')
 
-      validate({}, options).should.be.false
-
-      done()
+    validate({}, '1.0.0', (err, valid) => {
+      assert.notOk(valid, 'should return false in a callback')
+      assert.type(err, ALFError, 'should return ALFError object in a callback')
     })
 
-    it('should succeed', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
+    validate({}, '1.0.0', (err) => assert.match(err, error, 'should fail on missing "data.version"'))
+  })
 
-      validate(fixtures['1.0.0'].full, options).should.be.true
+  t.test('success', (assert) => {
+    assert.plan(4)
 
-      done()
+    assert.ok(validate(fixtures['1.0.0'].full), 'should successfully validate single ALF object')
+    assert.ok(validate([fixtures['1.0.0'].full]), 'should successfully validate multiple ALF objects')
+
+    validate(fixtures['1.0.0'].full, '1.0.0', (err, valid) => {
+      assert.ok(valid, 'should return true in a callback')
+      assert.equal(err, null, 'should not have any errors')
     })
   })
 
-  describe('with callback', function () {
-    it('should fail', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate({}, options, function (err, valid) {
-        valid.should.be.false
-        err.should.exist
-
-        done()
-      })
-    })
-
-    it('should succeed', function (done) {
-      var options = {
-        version: '1.0.0'
-      }
-
-      validate(fixtures['1.0.0'].full, options, function (err, valid) {
-        valid.should.be.false
-        should.not.exist(err)
-
-        done()
-      })
-    })
-  })
+  t.end()
 })

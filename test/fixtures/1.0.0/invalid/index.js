@@ -1,3 +1,7 @@
-'use strict'
+import multiple from './multi.json'
 
-module.exports = require('require-directory')(module)
+export * as creator from './creator.json'
+export * as date from './date.json'
+export * as version from './version.json'
+
+export const multi = multiple

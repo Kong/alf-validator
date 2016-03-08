@@ -1,12 +1,9 @@
-'use strict'
-
-var clone = require('stringify-clone')
-var schemas = clone(require('har-validator/lib/schemas'))
+import { har, content } from 'har-validator/lib/schemas'
 
 // ALF modification to HAR
 
 // ignore `cache`
-schemas.har.properties.log.properties.entries.items.required = [
+har.properties.log.properties.entries.items.required = [
   'startedDateTime',
   'time',
   'request',
@@ -15,7 +12,7 @@ schemas.har.properties.log.properties.entries.items.required = [
 ]
 
 // ignore `cookies
-schemas.har.properties.log.properties.entries.items.properties.request.required = [
+har.properties.log.properties.entries.items.properties.request.required = [
   'method',
   'url',
   'httpVersion',
@@ -26,7 +23,7 @@ schemas.har.properties.log.properties.entries.items.properties.request.required 
 ]
 
 // ignore `cookies`, `redirectURL`
-schemas.har.properties.log.properties.entries.items.properties.response.required = [
+har.properties.log.properties.entries.items.properties.response.required = [
   'status',
   'statusText',
   'httpVersion',
@@ -37,7 +34,7 @@ schemas.har.properties.log.properties.entries.items.properties.response.required
 ]
 
 // add entry.clientIPAddress
-schemas.har.properties.log.properties.entries.items.clientIPAddress = {
+har.properties.log.properties.entries.items.clientIPAddress = {
   type: 'string',
   format: 'ipv4',
   oneOf: [
@@ -47,14 +44,14 @@ schemas.har.properties.log.properties.entries.items.clientIPAddress = {
 }
 
 // add request.content
-schemas.har.properties.log.properties.entries.items.properties.request.properties.content = schemas.content
+har.properties.log.properties.entries.items.properties.request.properties.content = content
 
 // ALF Properties
-var schema = {
+const schema = {
   type: 'object',
   required: ['serviceToken', 'har'],
   properties: {
-    har: schemas.har,
+    har: har,
     environment: 'string',
     serviceToken: 'string',
     version: {
@@ -64,11 +61,9 @@ var schema = {
   }
 }
 
-module.exports = {
-  single: schema,
-  multi: {
-    type: 'array',
-    minItems: 1,
-    items: schema
-  }
+export const single = schema
+export const multi = {
+  type: 'array',
+  minItems: 1,
+  items: schema
 }

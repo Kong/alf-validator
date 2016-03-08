@@ -1,3 +1,5 @@
-'use strict'
-
-module.exports = require('require-directory')(module)
+export * as content from './content.json'
+export * as creator from './creator.json'
+export * as date from './date.json'
+export * as token from './token.json'
+export * as version from './version.json'

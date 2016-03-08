@@ -1,14 +1,11 @@
-'use strict'
-
-var clone = require('stringify-clone')
-var schemas = clone(require('har-validator/lib/schemas'))
+import { har } from 'har-validator/lib/schemas'
 
 // ALF Properties
-var schema = {
+const schema = {
   type: 'object',
   required: ['version', 'serviceToken', 'har'],
   properties: {
-    har: schemas.har,
+    har: har,
     environment: 'string',
     serviceToken: 'string',
     version: {
@@ -25,11 +22,9 @@ var schema = {
   }
 }
 
-module.exports = {
-  single: schema,
-  multi: {
-    type: 'array',
-    minItems: 1,
-    items: schema
-  }
+export const single = schema
+export const multi = {
+  type: 'array',
+  minItems: 1,
+  items: schema
 }

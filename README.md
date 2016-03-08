@@ -10,11 +10,15 @@ Extremely fast API Log Format ([ALF](https://github.com/Mashape/api-log-format))
 
 ## Install
 
-```sh
+```bash
+# to use in cli
+npm install --global alf-validator
+
+# to use as a module
 npm install --save alf-validator
 ```
 
-## Usage
+## CLI Usage
 
 ```
 
@@ -30,141 +34,25 @@ npm install --save alf-validator
 
 ###### Example
 
-## CLI 
-
 ```shell
 alf-validator alf.json
+
+alf-validator --schema 1.0.0 alf.json
 ```
 
-## API
+## API 
 
-### Validate(data [, options])
-
-alias of `validate.single()`
-
-### Validate.single(data [, options])
-
-> Returns a promise that resolves to the valid object.
-
-- **data**: `Object` *(Required)*
-  a full [ALF](https://github.com/Mashape/api-log-format) object
-
-- **options**: `Object`
-  Options Object
-
-```js
-var ALF = require('./alf.json')
-var validate = require('alf-validator')
-var options = {
-  version: '1.0.0'
-}
-
-validate(ALF, options)
-  .then(function (ALF) {
-    console.log('horray!')
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
-})
-```
-
-#### Options
-
-| Name      | Description                        | Default    |
-| --------- | ---------------------------------- | ---------- |
-| `version` | Schema version to validate against | `'latest'` |
-
-
-### Validate.multi(data [, options])
-
-> Returns a promise that resolves to the valid object.
-
-- **data**: `Array` *(Required)*
-  an array of [ALF](https://github.com/Mashape/api-log-format) objects
-
-- **options**: `Object`
-  Options Object
-
-```js
-var ALFArray = require('./alf.json')
-var validate = require('alf-validator')
-var options = {
-  version: '1.0.0'
-}
-
-validate(ALFArray, options)
-  .then(function (ALF) {
-    console.log('horray!')
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
-})
-```
-
-#### Options
-
-| Name      | Description                        | Default    |
-| --------- | ---------------------------------- | ---------- |
-| `version` | Schema version to validate against | `'latest'` |
-
-
-### Validate.schema(version)
-
-Returns the JSON Schema object
-
-- **version**: `String` *(Required)*
-  [ALF Schema](https://github.com/Mashape/api-log-format) version
-
-```js
-var validate = require('alf-validator')
-
-validate.schema('1.0.0')
-```
+- [async API](docs/async.md)
+- [callback API](docs/async.md)
+- [Promise API](docs/promise.md) *(default)*
 
 ----
+> :copyright: [www.mashape.com](https://www.mashape.com/) &nbsp;&middot;&nbsp;
+> License: [ISC](LICENSE) &nbsp;&middot;&nbsp;
+> Github: [@mashape](https://github.com/mashape) &nbsp;&middot;&nbsp;
+> Twitter: [@mashape](https://twitter.com/mashape)
 
-## Callback API
-
-> Returns `true` or `false`.
-
-- **data**: `Object` *(Required)*
-  a full [ALF](https://github.com/Mashape/api-log-format) object
-
-- **options**: `Object`
-  Options Object
-
-- **callback**: `Function`
-  gets two arguments (err, valid)
-
-```js
-var ALF = require('./alf.json')
-var validate = require('alf-validator/lib/async')
-var options = {
-  version: '1.0.0'
-}
-
-validate(ALF, options, function (e, valid) {
-  if (e) console.log(e.errors)
-
-  if (valid) console.log('horray!')
-})
-```
-
-#### Options
-
-| Name      | Description                        | Default    |
-| --------- | ---------------------------------- | ---------- |
-| `version` | Schema version to validate against | `'latest'` |
-
-----
-
-## License
-
-[MIT](LICENSE) &copy; [Mashape](https://www.mashape.com/)
-
-[license-url]: https://github.com/Mashape/alf-validator/blob/master/LICENSE
+[license-url]: http://choosealicense.com/licenses/mit/
 
 [travis-url]: https://travis-ci.org/Mashape/alf-validator
 [travis-image]: https://img.shields.io/travis/Mashape/alf-validator.svg?style=flat-square
