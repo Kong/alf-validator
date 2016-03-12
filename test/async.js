@@ -1,7 +1,7 @@
+import * as fixtures from './fixtures/1.0.0/'
 import ALFError from '../src/error'
 import tap from 'tap'
 import validate from '../src/async'
-import fixtures from './fixtures/'
 
 tap.test('async', (t) => {
   t.test('failure', (assert) => {
@@ -22,10 +22,10 @@ tap.test('async', (t) => {
   t.test('success', (assert) => {
     assert.plan(4)
 
-    assert.ok(validate(fixtures['1.0.0'].full), 'should successfully validate single ALF object')
-    assert.ok(validate([fixtures['1.0.0'].full]), 'should successfully validate multiple ALF objects')
+    assert.ok(validate(fixtures.full, '1.0.0'), 'should successfully validate single ALF object')
+    assert.ok(validate([fixtures.full], '1.0.0'), 'should successfully validate multiple ALF objects')
 
-    validate(fixtures['1.0.0'].full, '1.0.0', (err, valid) => {
+    validate(fixtures.full, '1.0.0', (err, valid) => {
       assert.ok(valid, 'should return true in a callback')
       assert.equal(err, null, 'should not have any errors')
     })

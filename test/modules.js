@@ -1,7 +1,6 @@
-import tap from 'tap'
-
 import srcAsync from '../src/async'
 import srcPromise from '../src/promise'
+import tap from 'tap'
 
 const libAsync = require('../lib/async')
 const libPromise = require('../lib/promise')

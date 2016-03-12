@@ -1,7 +1,4 @@
-import multiple from './multi.json'
-
-export * as creator from './creator.json'
-export * as date from './date.json'
-export * as version from './version.json'
-
-export const multi = multiple
+export multi from './multi.json'
+export creator from './creator.json'
+export date from './date.json'
+export version from './version.json'
