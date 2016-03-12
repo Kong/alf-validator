@@ -10,7 +10,7 @@ const schema = {
     serviceToken: 'string',
     version: {
       type: 'string',
-      pattern: '^1\\.0\\.0$'
+      enum: ['1.0.0']
     },
     clientIPAddress: {
       type: 'string',

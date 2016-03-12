@@ -1,8 +1,6 @@
-import schemas from './schemas'
+import { default as schemas, latest } from './versions'
 import ALFError from './error'
 import JSONValidator from 'is-my-json-valid'
-
-const latest = '1.0.0'
 
 // create an alias
 schemas.latest = schemas[latest]

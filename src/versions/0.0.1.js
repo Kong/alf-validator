@@ -56,7 +56,7 @@ const schema = {
     serviceToken: 'string',
     version: {
       type: 'string',
-      pattern: '^0\\.0\\.1$'
+      enum: ['0.0.1']
     }
   }
 }

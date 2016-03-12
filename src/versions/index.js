@@ -5,3 +5,5 @@ export default {
   '0.0.1': ohohone,
   '1.0.0': oneohoh
 }
+
+export const latest = '1.0.0'
