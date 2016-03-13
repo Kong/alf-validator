@@ -1,0 +1,18 @@
+{
+  "id": "content",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "text",
+    "encoding"
+  ],
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "encoding": {
+      "type": "string",
+      "enum": ["plain", "base64", "unknown"]
+    }
+  }
+}

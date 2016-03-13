@@ -1,0 +1,46 @@
+{
+  "id": "entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "startedDateTime",
+    "time",
+    "request",
+    "response",
+    "timings"
+  ],
+  "properties": {
+    "startedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(\\d{4})(-)?(\\d\\d)(-)?(\\d\\d)(T)?(\\d\\d)(:)?(\\d\\d)(:)?(\\d\\d)(\\.\\d+)?(Z|([+-])(\\d\\d)(:)?(\\d\\d))"
+    },
+    "serverIPAddress": {
+      "type": "string",
+      "oneOf": [
+        { "format": "ipv4" },
+        { "format": "ipv6" }
+      ]
+    },
+    "clientIPAddress": {
+      "type": "string",
+      "oneOf": [
+        { "format": "ipv4" },
+        { "format": "ipv6" }
+      ]
+    },
+    "time": {
+      "type": "number",
+      "min": 0
+    },
+    "request": {
+      "$ref": "#request"
+    },
+    "response": {
+      "$ref": "#response"
+    },
+    "timings": {
+      "$ref": "#timings"
+    }
+  }
+}

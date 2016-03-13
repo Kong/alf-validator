@@ -1,0 +1,19 @@
+{
+  "id": "service",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "token",
+    "environment"
+  ],
+  "properties": {
+    "token": {
+      "type": "string",
+      "minLength": 1
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

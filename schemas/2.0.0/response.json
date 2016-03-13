@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "required": [
+    "status",
+    "statusText",
+    "headers",
+    "headersSize",
+    "bodyCaptured",
+    "bodySize"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "httpVersion": {
+      "type": "string",
+      "enum": ["HTTP/1", "HTTP/1.0", "HTTP/1.1", "HTTP/2", "unknown"]
+    },
+    "status": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "statusText": {
+      "type": "string"
+    },
+    "headersSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "bodyCaptured": {
+      "type": "boolean"
+    },
+    "bodySize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "headers": {
+      "id": "headers",
+      "type": "array",
+      "items": {
+        "$ref": "#pairs"
+      }
+    },
+    "content": {
+      "$ref": "#content"
+    }
+  }
+}

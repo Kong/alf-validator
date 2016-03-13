@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "creator",
+    "entries"
+  ],
+  "properties": {
+    "version": {
+      "id": "version",
+      "type": "string",
+      "enum": ["2.0.0"]
+    },
+    "creator": {
+      "$ref": "#creator"
+    },
+    "service": {
+      "$ref": "#service"
+    },
+    "entries": {
+      "id": "entries",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#entry"
+      }
+    }
+  }
+}
