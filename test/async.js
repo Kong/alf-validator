@@ -16,8 +16,8 @@ tap.test('async', (t) => {
 
     assert.notOk(validate({}), 'should fail')
 
-    validate({}, options, (err, valid) => {
-      assert.notOk(valid, 'should return false in a callback')
+    validate({}, options, (err, data) => {
+      assert.match(data, {}, 'should bad data in a callback')
       assert.type(err, ALFError, 'should return ALFError object in a callback')
     })
 
@@ -30,8 +30,8 @@ tap.test('async', (t) => {
     assert.ok(validate(fixtures.full, options), 'should successfully validate single ALF object')
     assert.ok(validate([fixtures.full], options), 'should successfully validate multiple ALF objects')
 
-    validate(fixtures.full, options, (err, valid) => {
-      assert.ok(valid, 'should return true in a callback')
+    validate(fixtures.full, options, (err, data) => {
+      assert.match(data, fixtures.full, 'should return data in a callback')
       assert.equal(err, null, 'should not have any errors')
     })
   })

@@ -35,3 +35,5 @@ validate(data, 'latest'})
   .then((data) => console.log('horray!'))
   .catch(console.error)
 ```
+
+> the promise resolves with an object representing the filtered data *(if `additionalProperties === true`)* or the original data

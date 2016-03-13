@@ -28,7 +28,7 @@ export default function validator (data = {}, options = { version: 'latest', add
 
   // callback?
   if (typeof cb === 'function') {
-    return cb(validate.errors ? new ALFError(validate.errors) : null, valid)
+    return cb(validate.errors ? new ALFError(validate.errors) : null, data)
   }
 
   return valid

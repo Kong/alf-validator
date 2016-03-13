@@ -17,26 +17,32 @@ import validate from 'alf-validator/src/async'
 var validate = require('alf-validator/lib/async')
 ```
 
-### validate(data [, version = 'latest'] [, additionalProperties = false] [, callback])
+### validate(data, options [, callback])
 
 > Returns `true` or `false`.
 
 - **data**: `Object` *(Required)*
   an [ALF](https://github.com/Mashape/api-log-format) object
 
-- **version**: `String`
-  [ALF](https://github.com/Mashape/api-log-format#versions) schema version number
+- **options**:
+  - **version**: `String`
+    [ALF](https://github.com/Mashape/api-log-format#versions) schema version number
 
-- **additionalProperties**: `Boolean`
-  filters away properties not in the schema before attempt to validate
+  - **additionalProperties**: `Boolean`
+    filters away properties not in the schema before attempt to validate
 
 - **callback**: `Function`
-  callback function with signature of `(err, valid)`
+  callback function with signature of `(err, data)` where `data` is the filtered data *(if `additionalProperties === true`)*
 
 ```js
-let isValid = validate(data, '0.0.1', (err, valid) => {
+let options = {
+  version: 'latest',
+  additionalProperties: true
+}
+
+let isValid = validate(data, options, (err, data) => {
   if (err) console.error(e.errors)
 
-  if (valid) console.log('horray!')
+  console.log(data)
 })
 ```

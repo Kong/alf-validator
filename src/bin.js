@@ -35,7 +35,7 @@ cmd.args.map((fileName) => {
     }
 
     if (err instanceof ALFError) {
-      err.errors.forEach((details) => console.error('%s [%s] failed validation: (%s: %s) %s', chalk.red('✖'), file, chalk.cyan.italic(details.field), chalk.magenta.italic(details.value), chalk.red(details.message)))
+      err.errors.forEach((details) => console.error('%s [%s] failed validation: %s (%s: %s)', chalk.red('✖'), file, chalk.red(details.message), chalk.cyan.italic(details.field), chalk.magenta.italic(details.value)))
       return
     }
 
