@@ -27,7 +27,7 @@ cmd.args.map((fileName) => {
 
     .then(JSON.parse)
     .then((data) => validate(data, cmd.schema || 'latest'))
-    .then((data) => console.log('%s [%s] is valid', chalk.green('✓'), file))
+    .then((data) => console.log('%s [%s] is valid', chalk.green('✔️'), file))
     .catch((err) => {
       if (err instanceof SyntaxError) {
         return console.error('%s [%s] failed to read JSON: %s', chalk.red('✖'), file, chalk.red(err.message))
