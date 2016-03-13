@@ -17,7 +17,7 @@ import validate from 'alf-validator/src/async'
 var validate = require('alf-validator/lib/async')
 ```
 
-### validate(data [, version = 'latest'])
+### validate(data [, version = 'latest'] [, additionalProperties = false])
 
 > Returns `true` or `false`.
 
@@ -26,6 +26,9 @@ var validate = require('alf-validator/lib/async')
 
 - **version**: `String`
   [ALF](https://github.com/Mashape/api-log-format#versions) schema version number
+
+- **additionalProperties**: `Boolean`
+  filters away properties not in the schema before attempt to validate
 
 ```js
 let isValid = validate(data, '1.0.0')

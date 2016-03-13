@@ -25,19 +25,19 @@ cmd.args.map((fileName) => {
     fs.readFile(fileName, (err, data) => err === null ? resolve(data) : reject(err))
   })
 
-    .then(JSON.parse)
-    .then((data) => validate(data, cmd.schema || 'latest'))
-    .then((data) => console.log('%s [%s] is valid', chalk.green('✔️'), file))
-    .catch((err) => {
-      if (err instanceof SyntaxError) {
-        return console.error('%s [%s] failed to read JSON: %s', chalk.red('✖'), file, chalk.red(err.message))
-      }
+  .then(JSON.parse)
+  .then((data) => validate(data, cmd.schema || 'latest'))
+  .then((data) => console.log('%s [%s] is valid', chalk.green('✔️'), file))
+  .catch((err) => {
+    if (err instanceof SyntaxError) {
+      return console.error('%s [%s] failed to read JSON: %s', chalk.red('✖'), file, chalk.red(err.message))
+    }
 
-      if (err instanceof ALFError) {
-        err.errors.forEach((details) => console.error('%s [%s] failed validation: (%s: %s) %s', chalk.red('✖'), file, chalk.cyan.italic(details.field), chalk.magenta.italic(details.value), chalk.red(details.message)))
-        return
-      }
+    if (err instanceof ALFError) {
+      err.errors.forEach((details) => console.error('%s [%s] failed validation: (%s: %s) %s', chalk.red('✖'), file, chalk.cyan.italic(details.field), chalk.magenta.italic(details.value), chalk.red(details.message)))
+      return
+    }
 
-      console.error('%s [%s] an unknown error has occured: %s', chalk.red('✖'), file, chalk.red(err.message))
-    })
+    console.error('%s [%s] an unknown error has occured: %s', chalk.red('✖'), file, chalk.red(err.message))
+  })
 })

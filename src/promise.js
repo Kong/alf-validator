@@ -5,12 +5,17 @@ import JSONValidator from 'is-my-json-valid'
 // create an alias
 schemas.latest = schemas[latest]
 
-export default function validator (data = {}, version = 'latest') {
+export default function validator (data = {}, version = 'latest', additionalProperties = false) {
+  let type = Array.isArray(data) ? 'multi' : 'single'
+  let schema = schemas[version][type]
+
+  // should we filter the data first ?
+  if (additionalProperties === true) {
+    let filter = JSONValidator.filter(schema)
+    data = filter(data)
+  }
+
   return new Promise((resolve, reject) => {
-    let type = Array.isArray(data) ? 'multi' : 'single'
-
-    let schema = schemas[version][type]
-
     // validator config
     let validate = JSONValidator(schema, {
       greedy: true,
