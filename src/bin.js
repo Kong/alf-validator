@@ -12,6 +12,7 @@ cmd
   .version(pkg.version)
   .usage('[options] <files...>')
   .option('-s, --schema [version]', 'validate using specific schema version (default to latest)', 'latest')
+  .option('-f, --filter', 'filter additional properties before validation')
   .parse(process.argv)
 
 if (!cmd.args.length) {
@@ -26,7 +27,7 @@ cmd.args.map((fileName) => {
   })
 
   .then(JSON.parse)
-  .then((data) => validate(data, cmd.schema || 'latest'))
+  .then((data) => validate(data, cmd.schema || 'latest', cmd.filter))
   .then((data) => console.log('%s [%s] is valid', chalk.green('✔️'), file))
   .catch((err) => {
     if (err instanceof SyntaxError) {

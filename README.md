@@ -22,13 +22,14 @@ npm install --save alf-validator
 
 ```
 
-  Usage: alf-validator [options] <files ...>
+  Usage: alf-validator [options] <files...>
 
   Options:
 
     -h, --help              output usage information
     -V, --version           output the version number
     -s, --schema [version]  validate using specific schema version (default to latest)
+    -f, --filter            filter additional properties before validation
 
 ```
 
