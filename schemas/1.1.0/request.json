@@ -1,0 +1,54 @@
+{
+  "id": "request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "method",
+    "url",
+    "headersSize",
+    "bodyCaptured",
+    "bodySize",
+    "headers"
+  ],
+  "properties": {
+    "httpVersion": {
+      "type": "string",
+      "enum": ["HTTP/1", "HTTP/1.0", "HTTP/1.1", "HTTP/2", "unknown"]
+    },
+    "method": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "headersSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "bodyCaptured": {
+      "type": "boolean"
+    },
+    "bodySize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "queryString": {
+      "id": "queryString",
+      "type": "array",
+      "items": {
+        "$ref": "#pairs"
+      }
+    },
+    "headers": {
+      "id": "headers",
+      "type": "array",
+      "items": {
+        "$ref": "#pairs"
+      }
+    },
+    "postData": {
+      "$ref": "#content"
+    }
+  }
+}

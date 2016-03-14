@@ -1,0 +1,95 @@
+[
+  {
+    "version": "1.1.0",
+    "serviceToken": "foo",
+    "har": {
+      "log": {
+        "creator": {
+          "name": "galileo-agent-node",
+          "version": "1.0.0"
+        },
+        "entries": [
+          {
+            "startedDateTime": "2016-03-13T03:47:16.937Z",
+            "time": 82,
+            "request": {
+              "method": "POST",
+              "url": "https://mockbin.org/request",
+              "headers": [
+                { "name": "accept", "value": "*/*" },
+                { "name": "content-length", "value": "25" },
+                { "name": "content-type", "value": "application/json" }
+              ],
+              "headersSize": 62,
+              "bodyCaptured": true,
+              "bodySize": 25
+            },
+            "response": {
+              "status": 200,
+              "statusText": "OK",
+              "headers": [
+                { "name": "content-length", "value": "25" },
+                { "name": "content-type",   "value": "application/json; charset=utf-8" },
+                { "name": "x-powered-by",   "value": "mockbin" }
+              ],
+              "headersSize": 87,
+              "bodyCaptured": true,
+              "bodySize": 25
+            },
+            "timings": {
+              "send": 0.06,
+              "wait": 87.26,
+              "receive": 0.24
+            }
+          }
+        ]
+      }
+    }
+  }, {
+    "version": "1.1.0",
+    "serviceToken": "foo",
+    "har": {
+      "log": {
+        "creator": {
+          "name": "galileo-agent-node",
+          "version": "1.0.0"
+        },
+        "entries": [
+          {
+            "startedDateTime": "2016-03-13T03:47:16.937Z",
+            "time": 82,
+            "request": {
+              "method": "POST",
+              "url": "https://mockbin.org/request",
+              "headers": [
+                { "name": "accept", "value": "*/*" },
+                { "name": "content-length", "value": "25" },
+                { "name": "content-type", "value": "application/json" }
+              ],
+              "headersSize": 62,
+              "bodyCaptured": true,
+              "bodySize": 25
+            },
+            "response": {
+              "status": 200,
+              "statusText": "OK",
+              "headers": [
+                { "name": "content-length", "value": "25" },
+                { "name": "content-type",   "value": "application/json; charset=utf-8" },
+                { "name": "x-powered-by",   "value": "mockbin" }
+              ],
+              "headersSize": 87,
+              "bodyCaptured": true,
+              "bodySize": 25
+            },
+            "timings": {
+              "send": 0.06,
+              "wait": 87.26,
+              "receive": 0.24
+            }
+          }
+        ]
+      }
+    }
+  }
+]

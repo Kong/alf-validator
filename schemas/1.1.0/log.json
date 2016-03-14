@@ -1,0 +1,56 @@
+{
+  "id": "/",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "serviceToken",
+    "har"
+  ],
+  "properties": {
+    "version": {
+      "id": "version",
+      "type": "string",
+      "enum": ["1.1.0"]
+    },
+    "serviceToken": {
+      "type": "string",
+      "minLength": 1
+    },
+    "environment": {
+      "type": "string"
+    },
+    "har": {
+      "id": "har",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "log"
+      ],
+      "properties": {
+        "log": {
+          "id": "log",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "creator",
+            "entries"
+          ],
+          "properties": {
+            "creator": {
+              "$ref": "#creator"
+            },
+            "entries": {
+              "id": "entries",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#entry"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

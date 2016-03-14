@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "serviceToken": "<my service token>",
+  "environment": "PRODUCTION",
+  "har": {
+    "log": {
+      "creator": {
+        "name": "galileo-agent-node",
+        "version": "1.0.0"
+      },
+      "entries": [
+        {
+          "startedDateTime": "2016-03-13T03:47:16.937Z",
+          "serverIPAddress": "10.10.10.10",
+          "clientIPAddress": "10.10.10.20",
+          "time": 82,
+          "request": {
+            "method": "POST",
+            "url": "https://mockbin.org/request",
+            "httpVersion": "HTTP/1.1",
+            "queryString": [
+              { "name": "foo", "value": "bar" },
+              { "name": "baz", "value": "hey" }
+            ],
+            "headers": [
+              { "name": "accept", "value": "*/*" },
+              { "name": "content-length", "value": "25" },
+              { "name": "content-type", "value": "application/json" }
+            ],
+            "headersSize": 62,
+            "bodyCaptured": true,
+            "bodySize": 25,
+            "postData": {
+              "text": "{\"foo\":\"bar\",\"baz\":\"hey\"}",
+              "encoding": "plain"
+            }
+          },
+          "response": {
+            "status": 200,
+            "statusText": "OK",
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              { "name": "content-length", "value": "25" },
+              { "name": "content-type",   "value": "application/json; charset=utf-8" },
+              { "name": "x-powered-by",   "value": "mockbin" }
+            ],
+            "content": {
+              "text": "eyJmb28iOiJiYXIiLCJiYXoiOiJoZXkifQ==",
+              "encoding": "base64"
+            },
+            "headersSize": 87,
+            "bodyCaptured": true,
+            "bodySize": 25
+          },
+          "timings": {
+            "send": 0.06,
+            "wait": 87.26,
+            "receive": 0.24
+          }
+        }
+      ]
+    }
+  }
+}

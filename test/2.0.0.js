@@ -31,7 +31,7 @@ tap.test('v2.0.0', (t) => {
 
     return Promise.all([
       validate(fixtures.full, '2.0.0').then((out) => assert.equal(out, fixtures.full, 'should validate successfully with full example')),
-      validate(fixtures.minimal, '2.0.0').catch(console.error).then((out) => assert.equal(out, fixtures.minimal, 'should validate successfully with minimally required example')),
+      validate(fixtures.minimal, '2.0.0').then((out) => assert.equal(out, fixtures.minimal, 'should validate successfully with minimally required example')),
       validate(fixtures.multi, '2.0.0').then((out) => assert.equal(out, fixtures.multi, 'should succeed on multi ALF')),
       validate(fixtures.invalid.properties, '2.0.0', true).then((out) => assert.match(out, fixtures.minimal, 'should filter away additional properties'))
     ])
