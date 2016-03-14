@@ -17,7 +17,7 @@ import validate from 'alf-validator/src/async'
 var validate = require('alf-validator/lib/async')
 ```
 
-### validate(data [, version = 'latest'] [, additionalProperties = false])
+### validate(data [, options)
 
 > Returns `true` or `false`.
 
