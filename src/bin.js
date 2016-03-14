@@ -1,44 +1,66 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk'
-import cmd from 'commander'
-import fs from 'fs'
-import path from 'path'
-import pkg from '../package.json'
-import validate from './promise'
 import ALFError from './error'
+import validate from './promise'
+import yargs from 'yargs'
+import furmat from 'furmat'
+import { read, parse } from './utils'
+import { buffer as stdin } from 'get-stdin'
 
-cmd
-  .version(pkg.version)
-  .usage('[options] <files...>')
-  .option('-s, --schema [version]', 'validate using specific schema version (default to latest)', 'latest')
-  .option('-f, --filter', 'filter additional properties before validation')
-  .parse(process.argv)
+const format = furmat()
+const options = {
+  'filter': {
+    alias: 'f',
+    demand: false,
+    default: false,
+    describe: 'filter additional properties before validation',
+    type: 'boolean'
+  },
 
-if (!cmd.args.length) {
-  cmd.help()
+  'schema': {
+    alias: 's',
+    demand: false,
+    default: 'latest',
+    describe: 'validate using specific schema version',
+    type: 'string'
+  },
+  'help': {
+    alias: 'h'
+  }
 }
 
-cmd.args.map((fileName) => {
-  let file = chalk.yellow.italic(path.basename(fileName))
+stdin().then((stdin) => {
+  let argv = yargs
+    .demand(stdin.length ? 0 : 1)
+    .usage('Usage: $0 <file...> [options]')
+    .help('help')
+    .options(options)
+    .argv
 
-  new Promise((resolve, reject) => {
-    fs.readFile(fileName, (err, data) => err === null ? resolve(data) : reject(err))
-  })
+  // add stdin to list of files
+  if (stdin.length) {
+    argv._.push(stdin)
+  }
 
-  .then(JSON.parse)
-  .then((data) => validate(data, cmd.schema || 'latest', cmd.filter))
-  .then((data) => console.log('%s [%s] is valid', chalk.green('✔️'), file))
-  .catch((err) => {
-    if (err instanceof SyntaxError) {
-      return console.error('%s [%s] failed to read JSON: %s', chalk.red('✖'), file, chalk.red(err.message))
-    }
+  argv._.forEach((file) => {
+    read(file)
+      .then(parse)
+      .then((file) => {
+        return validate(file.content, argv.schema, argv.filter)
+          .then((data) => console.log(format('%s:green [%s:yellow:italic] is valid', '✔️', file.name)))
+          .catch((err) => err.errors.forEach((details) => console.error(format('%s:red [%s:yellow:italic] failed validation: %s:red (%s:cyan:italic: %s:magenta:italic)', '✖', file.name, details.message, details.field, details.value))))
+      })
 
-    if (err instanceof ALFError) {
-      err.errors.forEach((details) => console.error('%s [%s] failed validation: %s (%s: %s)', chalk.red('✖'), file, chalk.red(details.message), chalk.cyan.italic(details.field), chalk.magenta.italic(details.value)))
-      return
-    }
+      .catch((err) => {
+        if (err instanceof SyntaxError) {
+          return console.error(format('%s:red [%s:yellow:italic] failed to read JSON: %s:red', '✖', err.file, err.message))
+        }
 
-    console.error('%s [%s] an unknown error has occured: %s', chalk.red('✖'), file, chalk.red(err.message))
+        if (err.code === 'ENOENT') {
+          return console.error(format('%s:red [%s:yellow:italic] %s:red', '✖', err.file, 'no such file or directory'))
+        }
+
+        console.error(format('%s:red [%s:yellow:italic] an unknown error has occured: %s:red', '✖', err.file, err.message))
+      })
   })
 })

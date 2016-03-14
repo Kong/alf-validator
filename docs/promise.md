@@ -19,7 +19,7 @@ var validate = require('alf-validator/lib/promise')
 
 ### validate(data [, version = 'latest'] [, additionalProperties = false])
 
-> Returns `true` or `false`.
+> Returns a Promise
 
 - **data**: `Object` *(Required)*
   an [ALF](https://github.com/Mashape/api-log-format) object
@@ -31,7 +31,7 @@ var validate = require('alf-validator/lib/promise')
   filters away properties not in the schema before attempt to validate
 
 ```js
-validate(data, 'latest'})
+validate(data, 'latest', false)
   .then((data) => console.log('horray!'))
   .catch(console.error)
 ```

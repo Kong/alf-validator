@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "status",
     "statusText",
@@ -8,7 +9,6 @@
     "bodyCaptured",
     "bodySize"
   ],
-  "additionalProperties": false,
   "properties": {
     "httpVersion": {
       "type": "string",
