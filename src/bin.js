@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import ALFError from './error'
+import furmat from 'furmat'
 import validate from './promise'
 import yargs from 'yargs'
-import furmat from 'furmat'
-import { read, parse } from './utils'
 import { buffer as stdin } from 'get-stdin'
+import { read, parse } from './utils'
 
 const format = furmat()
 const options = {

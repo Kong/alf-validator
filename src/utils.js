@@ -1,18 +1,18 @@
 import fs from 'fs'
 
-export function read (file) {
+export function read (name) {
   return new Promise((resolve, reject) => {
-    if (Buffer.isBuffer(file)) {
-      return resolve({ name: 'stdin', content: file })
+    if (Buffer.isBuffer(name)) {
+      return resolve({ name: 'stdin', content: name })
     }
 
-    fs.readFile(file, (err, data) => {
+    fs.readFile(name, (err, content) => {
       if (err) {
-        err.file = file
+        err.file = name
         return reject(err)
       }
 
-      resolve({ name: file, content: data })
+      resolve({ name, content })
     })
   })
 }
