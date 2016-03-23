@@ -1,0 +1,97 @@
+{
+  "serviceToken": "benchmark",
+  "har": {
+    "log": {
+      "version": "1.2",
+      "creator": {
+        "name": "ApiAnalytics HARchiver",
+        "version": "1.7.0"
+      },
+      "entries": [
+        {
+          "serverIPAddress": 1563782,
+          "clientIPAddress": "127.0.0.1",
+          "startedDateTime": "2015-03-30 22:38:01.362855Z",
+          "time": 187,
+          "request": {
+            "method": "GET",
+            "url": "http://httpbin.org/get?abc=dfef",
+            "httpVersion": "HTTP/1.1",
+            "queryString": [
+              {
+                "name": "abc",
+                "value": "dfef"
+              }
+            ],
+            "headers": [
+              {
+                "name": "accept",
+                "value": "*/*"
+              },
+              {
+                "name": "host",
+                "value": "httpbin.org"
+              },
+              {
+                "name": "my-other-header",
+                "value": "ajuegiaubgang"
+              },
+              {
+                "name": "user-agent",
+                "value": "curl/7.38.0"
+              }
+            ],
+            "headersSize": 89,
+            "bodySize": 0
+          },
+          "response": {
+            "status": 200,
+            "statusText": "200 OK",
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {
+                "name": "access-control-allow-credentials",
+                "value": "true"
+              },
+              {
+                "name": "access-control-allow-origin",
+                "value": "*"
+              },
+              {
+                "name": "connection",
+                "value": "keep-alive"
+              },
+              {
+                "name": "content-length",
+                "value": "296"
+              },
+              {
+                "name": "content-type",
+                "value": "application/json"
+              },
+              {
+                "name": "date",
+                "value": "Mon, 30 Mar 2015 22:38:16 GMT"
+              },
+              {
+                "name": "server",
+                "value": "nginx"
+              }
+            ],
+            "headersSize": 201,
+            "bodySize": 296,
+            "content": {
+              "size": 296,
+              "mimeType": "application/json"
+            }
+          },
+          "timings": {
+            "send": 1,
+            "wait": 185,
+            "receive": 1
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import clone from 'stringify-clone'
 import { har } from 'har-validator/lib/schemas'
 
 // ALF Properties
@@ -5,7 +6,7 @@ const schema = {
   type: 'object',
   required: ['version', 'serviceToken', 'har'],
   properties: {
-    har: har,
+    har: clone(har),
     environment: 'string',
     serviceToken: 'string',
     version: {

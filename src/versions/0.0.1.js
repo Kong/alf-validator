@@ -1,4 +1,8 @@
-import { har, content } from 'har-validator/lib/schemas'
+import clone from 'stringify-clone'
+import { har as _har, content as _content } from 'har-validator/lib/schemas'
+
+let har = clone(_har)
+let content = clone(_content)
 
 // ALF modification to HAR
 

@@ -1,11 +1,21 @@
-import content from '../../schemas/1.1.0/content.json'
-import creator from '../../schemas/1.1.0/creator.json'
-import entry from '../../schemas/1.1.0/entry.json'
-import log from '../../schemas/1.1.0/log.json'
-import pairs from '../../schemas/1.1.0/pairs.json'
-import request from '../../schemas/1.1.0/request.json'
-import response from '../../schemas/1.1.0/response.json'
-import timings from '../../schemas/1.1.0/timings.json'
+import clone from 'stringify-clone'
+import _content from '../../schemas/1.1.0/content.json'
+import _creator from '../../schemas/1.1.0/creator.json'
+import _entry from '../../schemas/1.1.0/entry.json'
+import _log from '../../schemas/1.1.0/log.json'
+import _pairs from '../../schemas/1.1.0/pairs.json'
+import _request from '../../schemas/1.1.0/request.json'
+import _response from '../../schemas/1.1.0/response.json'
+import _timings from '../../schemas/1.1.0/timings.json'
+
+let content = clone(_content)
+let creator = clone(_creator)
+let entry = clone(_entry)
+let log = clone(_log)
+let pairs = clone(_pairs)
+let request = clone(_request)
+let response = clone(_response)
+let timings = clone(_timings)
 
 /*
  * copy external scheams internally

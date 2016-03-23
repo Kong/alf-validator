@@ -9,12 +9,21 @@ const errors = {
   undef: new ALFError([{ field: 'data.version', message: 'is required' }]),
   creator: new ALFError([{ field: 'data.har.log.creator.version', message: 'is required' }]),
   version: new ALFError([{ field: 'data.har.log.version', message: 'is the wrong type' }]),
-  multi: new ALFError([{ field: 'data.1.version', message: 'is required' }])
+  multi: new ALFError([{ field: 'data.1.version', message: 'is required' }]),
+  deep: new ALFError([
+    { field: 'data.version', message: 'is required', type: 'object' },
+    { field: 'data.har.log.entries.0.cache', message: 'is required', type: 'object' },
+    { field: 'data.har.log.entries.0.startedDateTime', message: 'pattern mismatch', value: '2015-03-30 22:38:01.362855Z', type: 'string' },
+    { field: 'data.har.log.entries.0.request.cookies', message: 'is required', type: 'object' },
+    { field: 'data.har.log.entries.0.response.cookies', message: 'is required', type: 'object' },
+    { field: 'data.har.log.entries.0.response.redirectURL', message: 'is required', type: 'object' },
+    { field: 'data.har.log.entries.0.serverIPAddress', message: 'is the wrong type', value: 1563782, type: 'string' }
+  ])
 }
 
 tap.test('v1.0.0', (t) => {
   t.test('failure', (assert) => {
-    assert.plan(6)
+    assert.plan(7)
 
     return Promise.all([
       validate({}, '1.0.0').catch((err) => assert.match(err, errors.object, 'should fail with empty object')),
@@ -22,7 +31,8 @@ tap.test('v1.0.0', (t) => {
       validate(undefined, '1.0.0').catch((err) => assert.match(err, errors.undef, 'should fail with undefined')),
       validate(fixtures.invalid.creator, '1.0.0').catch((err) => assert.match(err, errors.creator, 'should fail on bad "log.creator"')),
       validate(fixtures.invalid.version, '1.0.0').catch((err) => assert.match(err, errors.version, 'should fail on bad "log.version"')),
-      validate(fixtures.invalid.multi, '1.0.0').catch((err) => assert.match(err, errors.multi, 'should fail on multi with one corrupt'))
+      validate(fixtures.invalid.multi, '1.0.0').catch((err) => assert.match(err, errors.multi, 'should fail on multi with one corrupt')),
+      validate(fixtures.invalid.deep, '1.0.0').catch((err) => assert.match(err, errors.deep, 'should fail on multi with one corrupt'))
     ])
   })
 
