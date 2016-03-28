@@ -19,6 +19,12 @@
     "receive": {
       "type": "number",
       "minimum": 0
+    },
+    "blocked": {
+      "type": "number"
+    },
+    "connect": {
+      "type": "number"
     }
   }
 }
