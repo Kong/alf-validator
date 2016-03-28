@@ -32,7 +32,8 @@
             "bodySize": 25,
             "postData": {
               "text": "{\"foo\":\"bar\",\"baz\":\"hey\"}",
-              "encoding": "plain"
+              "encoding": "plain",
+              "mimeType": "application/json"
             }
           },
           "response": {
@@ -46,7 +47,8 @@
             ],
             "content": {
               "text": "eyJmb28iOiJiYXIiLCJiYXoiOiJoZXkifQ==",
-              "encoding": "base64"
+              "encoding": "base64",
+              "mimeType": "application/json"
             },
             "headersSize": 87,
             "bodyCaptured": true,
