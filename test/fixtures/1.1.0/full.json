@@ -55,6 +55,8 @@
             "bodySize": 25
           },
           "timings": {
+            "connect": -1,
+            "blocked": -1,
             "send": 0.06,
             "wait": 87.26,
             "receive": 0.24
