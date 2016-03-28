@@ -4,9 +4,13 @@
   "additionalProperties": false,
   "required": [
     "text",
+    "mimeType",
     "encoding"
   ],
   "properties": {
+    "mimeType": {
+      "type": "string"
+    },
     "text": {
       "type": "string"
     },
